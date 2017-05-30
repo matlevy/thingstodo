@@ -7,10 +7,10 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class UserService {
 
-  user: Observable<firebase.User>;
+  authState: Observable<firebase.User>;
 
   constructor(db: AngularFireDatabaseModule, public afAuth:AngularFireAuth) { 
-    this.user = afAuth.authState;
+    this.authState = afAuth.authState;
   }
 
   authenticate() {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from '../things-services/user.service';
-import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +10,14 @@ import * as firebase from 'firebase/app';
 
 export class LoginComponent implements OnInit {
 
-  user: Observable<firebase.User>;
-
-  constructor(public userSvc:UserService) { 
-    this.user = userSvc.user;
-  }
+  constructor(public user:UserService) {}
 
   login() {
-    this.userSvc.authenticate();
+    this.user.authenticate();
   }
 
   logout() {
-    this.userSvc.logout();
+    this.user.logout();
   }
 
   ngOnInit() {
