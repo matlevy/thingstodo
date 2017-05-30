@@ -1,11 +1,29 @@
 <app-login></app-login>
 <md-card class="example-card">
     <md-card-header>
+        <!--<div md-card-avatar class="example-header-image"></div>-->
+        <md-card-title class="full-width">
+            <md-input-container class="full-width"><input mdInput placeholder="Title"></md-input-container>
+        </md-card-title>
+        <md-card-subtitle class="full-width">
+            <md-input-container class="full-width"><input mdInput placeholder="Subtitle"></md-input-container>
+        </md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+        <md-input-container class="full-width">
+            <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+        </md-input-container>
+    </md-card-content>
+    <md-card-actions>
+        <button md-raised-button>SAVE</button>
+    </md-card-actions>
+</md-card>
+<md-card class="example-card">
+    <md-card-header>
         <div md-card-avatar class="example-header-image"></div>
         <md-card-title>Shiba Inu</md-card-title>
         <md-card-subtitle>Dog Breed</md-card-subtitle>
     </md-card-header>
-    <img md-card-image src="assets/img/examples/shiba2.jpg">
     <md-card-content>
         <p>
         The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
@@ -14,7 +32,6 @@
         </p>
     </md-card-content>
     <md-card-actions>
-        <button md-button>LIKE</button>
-        <button md-button>SHARE</button>
+        <button md-raised-button>DELETE</button>
     </md-card-actions>
 </md-card>
