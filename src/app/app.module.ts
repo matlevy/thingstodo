@@ -9,6 +9,7 @@ import { MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputMod
 import { ThingsServicesModule } from './things-services/things-services.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputModule,
-    ThingsServicesModule
+    ThingsServicesModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,26 +1,19 @@
 <app-login></app-login>
 <md-card class="example-card">
-    <md-card-header>
-        <!--<div md-card-avatar class="example-header-image"></div>-->
-        <md-card-title class="full-width">
-            <md-input-container class="full-width"><input mdInput placeholder="Title"></md-input-container>
-        </md-card-title>
-        <md-card-subtitle class="full-width">
-            <md-input-container class="full-width"><input mdInput placeholder="Subtitle"></md-input-container>
-        </md-card-subtitle>
-    </md-card-header>
     <md-card-content>
-        <md-input-container class="full-width">
-            <textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+        <md-input-container class="full-width"><input mdInput placeholder="Title"></md-input-container>
+        <md-input-container class="full-width"><input mdInput placeholder="Subtitle"></md-input-container>
+        <md-input-container class="full-width">            
+            <textarea mdInput placeholder="Details" rows="10"></textarea>
         </md-input-container>
     </md-card-content>
     <md-card-actions>
-        <button md-raised-button>SAVE</button>
+        <button class="card-action" md-mini-fab><md-icon>save</md-icon></button>
     </md-card-actions>
 </md-card>
 <md-card class="example-card">
     <md-card-header>
-        <div md-card-avatar class="example-header-image"></div>
+        <!--<div md-card-avatar class="example-header-image"></div>-->
         <md-card-title>Shiba Inu</md-card-title>
         <md-card-subtitle>Dog Breed</md-card-subtitle>
     </md-card-header>
@@ -32,6 +25,6 @@
         </p>
     </md-card-content>
     <md-card-actions>
-        <button md-raised-button>DELETE</button>
+        <button class="card-action" md-mini-fab><md-icon>delete</md-icon></button>
     </md-card-actions>
 </md-card>
