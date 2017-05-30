@@ -1,16 +1,23 @@
 .sidenav-container {
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 9999;
+  background: none;
 }
 
 .sidenav-container md-sidenav {
-  display: flex;
+  display: block;
   overflow: visible;
+  min-width: 60px;
+  background: none;
+  z-index: 99999;
+  position: absolute;
 }
 
 .example-card {
-  width: 700px;
-  margin: 20px auto;
+  width: 90%;
+  max-width: 500px;
+  margin: 10px auto;
 }
 
 app-login {

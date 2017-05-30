@@ -1,2 +1,2 @@
-<button class="login-fab" *ngIf="!(user.authState | async)" (click)="login()" md-mini-fab><md-icon>lock_open</md-icon></button>
-<button class="login-fab" *ngIf="(user.authState | async)" (click)="logout()" md-mini-fab><md-icon>lock</md-icon></button>
+<button class="login-fab" *ngIf="!(user.authState | async)" (click)="login()" md-fab><md-icon>lock_open</md-icon></button>
+<button class="login-fab" *ngIf="(user.authState | async)" (click)="logout()" md-fab><md-icon>lock</md-icon></button>
