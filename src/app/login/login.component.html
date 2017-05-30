@@ -1,0 +1,5 @@
+<md-card>
+    <div> {{ (user | async)?.uid }} </div>
+    <button *ngIf="!(user | async)" (click)="login()" md-fab><md-icon>lock_open</md-icon></button>
+    <button *ngIf="(user | async)" (click)="logout()" md-fab><md-icon>lock</md-icon></button>
+</md-card>
