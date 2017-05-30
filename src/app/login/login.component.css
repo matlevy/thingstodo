@@ -1,14 +1,4 @@
-.example-sidenav-fab-container {
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-}
-
-.example-sidenav-fab-container md-sidenav {
-  display: flex;
-  overflow: visible;
-  background: none;
-}
-
-.example-fab {
+.login-fab {
     margin: 20px auto;
 }
+

@@ -1,0 +1,19 @@
+.sidenav-container {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.sidenav-container md-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+.example-card {
+  width: 700px;
+  margin: 20px auto;
+}
+
+app-login {
+  display: flex;
+  width: 100%;
+}
