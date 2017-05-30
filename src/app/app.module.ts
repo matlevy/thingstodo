@@ -8,7 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MdCardModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
 import { MdIconModule } from  '@angular/material';
-
+import { ThingsServicesModule } from './things-services/things-services.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
@@ -23,7 +23,7 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    MdCardModule, MdButtonModule, MdIconModule
+    MdCardModule, MdButtonModule, MdIconModule, ThingsServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
