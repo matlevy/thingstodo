@@ -1,5 +1,6 @@
-<md-card>
-    <div> {{ (user.authState | async)?.uid }} </div>
-    <button *ngIf="!(user.authState | async)" (click)="login()" md-fab><md-icon>lock_open</md-icon></button>
-    <button *ngIf="(user.authState | async)" (click)="logout()" md-fab><md-icon>lock</md-icon></button>
-</md-card>
+<md-sidenav-container class="example-sidenav-fab-container">
+    <md-sidenav #sidenav mode="side" opened="true">
+        <button class="example-fab" *ngIf="!(user.authState | async)" (click)="login()" md-mini-fab><md-icon>lock_open</md-icon></button>
+        <button class="example-fab" *ngIf="(user.authState | async)" (click)="logout()" md-mini-fab><md-icon>lock</md-icon></button>
+    </md-sidenav>
+</md-sidenav-container>

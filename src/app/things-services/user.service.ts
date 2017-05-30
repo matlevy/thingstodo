@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
@@ -8,17 +8,18 @@ import * as firebase from 'firebase/app';
 export class UserService {
 
   authState: Observable<firebase.User>;
+  userData: FirebaseObjectObservable<any>;
 
-  constructor(db: AngularFireDatabaseModule, public afAuth:AngularFireAuth) { 
+  constructor(private db: AngularFireDatabase, public afAuth:AngularFireAuth) { 
     this.authState = afAuth.authState;
   }
 
-  authenticate() {
-    this.afAuth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider());
+  authenticate():firebase.Promise<firebase.auth.UserCredential> {
+    return this.afAuth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider() );
   }
 
-  logout() {
-    this.afAuth.auth.signOut();
+  logout():firebase.Promise<string> {
+    return this.afAuth.auth.signOut();
   }
 
 }
