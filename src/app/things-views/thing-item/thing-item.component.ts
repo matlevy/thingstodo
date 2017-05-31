@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ThingsService } from '../../things-services/things.service';
+import { MdDialogModule } from '@angular/material';
 
 @Component({
   selector: 'app-thing-item',

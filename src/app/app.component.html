@@ -1,3 +1,3 @@
 <app-login></app-login>
-<app-thing-insert></app-thing-insert>
+<button class="addnew-fab" *ngIf="(things.user.authState | async)" (click)="addNew()" md-fab><md-icon>add</md-icon></button>
 <app-thing-item [thing]="item" *ngFor="let item of things.user.things | async"></app-thing-item>

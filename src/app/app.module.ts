@@ -19,6 +19,9 @@ import { ThingInsertComponent } from './things-views/thing-insert/thing-insert.c
     AppComponent,
     LoginComponent, ThingItemComponent, ThingInsertComponent
   ],
+  entryComponents: [
+    ThingInsertComponent
+  ],
   imports: [
     BrowserModule, FormsModule, HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
