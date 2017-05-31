@@ -25,7 +25,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputModule,
     ThingsServicesModule, BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ThingsServicesModule],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(){
+    
+  }
+ }
