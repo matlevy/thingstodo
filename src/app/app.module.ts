@@ -12,11 +12,12 @@ import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { ThingsViewsModule } from './things-views/things-views.module';
 import { ThingItemComponent } from './things-views/thing-item/thing-item.component';
+import { ThingInsertComponent } from './things-views/thing-insert/thing-insert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent, ThingItemComponent
+    LoginComponent, ThingItemComponent, ThingInsertComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,

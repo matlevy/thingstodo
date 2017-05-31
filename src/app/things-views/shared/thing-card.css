@@ -1,0 +1,16 @@
+.thing-card {
+  width: 90%;
+  max-width: 500px;
+  margin: 10px auto;
+  margin-bottom: 50px;
+}
+
+.card-action {
+  position: absolute;
+  right: 10px;
+  bottom: -20px;
+}
+
+.full-width {
+  width: 100%;
+}

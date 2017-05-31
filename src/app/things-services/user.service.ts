@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { ThingVO } from "./thing.vo";
 
 @Injectable()
 export class UserService {
@@ -44,6 +45,14 @@ export class UserService {
   deleteThing( thing ){
     if( this.things )
       this.things.remove( thing );
+  }
+
+  createNewThing():ThingVO {
+    return new ThingVO();
+  }
+
+  saveNew( thing:ThingVO ) {
+    this.things.push( thing );
   }
 
   get authenticated(){

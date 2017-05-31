@@ -4,7 +4,7 @@ import { ThingsService } from '../../things-services/things.service';
 @Component({
   selector: 'app-thing-item',
   templateUrl: './thing-item.component.html',
-  styleUrls: ['./thing-item.component.css']
+  styleUrls: ['./thing-item.component.css','../shared/thing-card.css']
 })
 export class ThingItemComponent implements OnInit {
 

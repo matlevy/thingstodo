@@ -1,0 +1,14 @@
+<md-card class="thing-card">
+    <form #addThing="ngForm">
+        <md-card-content>        
+            <md-input-container class="full-width"><input name="title" mdInput placeholder="Title" [(ngModel)]="thing.title" #title="ngModel"></md-input-container>
+            <md-input-container class="full-width"><input name="subtitle" mdInput placeholder="Subtitle" [(ngModel)]="thing.subtitle" #subtitle="ngModel"></md-input-container>
+            <md-input-container class="full-width">            
+                <textarea name="body" mdInput placeholder="Details" rows="10" [(ngModel)]="thing.body" #body="ngModel"></textarea>
+            </md-input-container>
+        </md-card-content>
+        <md-card-actions>
+            <button class="card-action" md-mini-fab (click)="save()"><md-icon>done</md-icon></button>
+        </md-card-actions>
+    </form>
+</md-card>

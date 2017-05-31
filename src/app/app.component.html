@@ -1,14 +1,3 @@
 <app-login></app-login>
-<md-card class="example-card">
-    <md-card-content>
-        <md-input-container class="full-width"><input mdInput placeholder="Title"></md-input-container>
-        <md-input-container class="full-width"><input mdInput placeholder="Subtitle"></md-input-container>
-        <md-input-container class="full-width">            
-            <textarea mdInput placeholder="Details" rows="10"></textarea>
-        </md-input-container>
-    </md-card-content>
-    <md-card-actions>
-        <button class="card-action" md-mini-fab><md-icon>done</md-icon></button>
-    </md-card-actions>
-</md-card>
+<app-thing-insert></app-thing-insert>
 <app-thing-item [thing]="item" *ngFor="let item of things.user.things | async"></app-thing-item>
