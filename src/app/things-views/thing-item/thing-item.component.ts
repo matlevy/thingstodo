@@ -14,6 +14,10 @@ export class ThingItemComponent implements OnInit {
     
   }
 
+  deleteThing() {
+    this.things.user.deleteThing(this.thing);
+  }
+
   ngOnInit() {
   }
 
