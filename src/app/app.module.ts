@@ -10,27 +10,26 @@ import { ThingsServicesModule } from './things-services/things-services.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ThingsService } from './things-services/things.service';
+//import { ThingsViewsModule } from './things-views/things-views.module';
+import { ThingItemComponent } from './things-views/thing-item/thing-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent, ThingItemComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
+    BrowserModule, FormsModule, HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputModule,
-    ThingsServicesModule, BrowserAnimationsModule
+    ThingsServicesModule, BrowserAnimationsModule 
   ],
-  providers: [ThingsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor( public things:ThingsService ){
+  constructor(){
 
   }
  }

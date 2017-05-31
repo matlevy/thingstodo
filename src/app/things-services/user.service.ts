@@ -41,6 +41,11 @@ export class UserService {
     return this.db.list(this.thingsPath).push({title:title,subtitle:subtitle,body:body,type:'text'});
   }
 
+  deleteThing( thing ){
+    if( this.things )
+      this.things.remove( thing );
+  }
+
   get authenticated(){
     return this.authState!==null;
   }
