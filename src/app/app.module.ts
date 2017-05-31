@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputModule } from '@angular/material';
+import { MaterialSharedModule } from './common/material-shared.module';
 import { ThingsServicesModule } from './things-services/things-services.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +22,7 @@ import { ThingItemComponent } from './things-views/thing-item/thing-item.compone
     BrowserModule, FormsModule, HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputModule,
+    MaterialSharedModule,
     ThingsServicesModule, BrowserAnimationsModule 
   ],
   providers: [],
