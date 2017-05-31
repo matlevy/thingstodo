@@ -21,9 +21,6 @@ export class UserService {
       if(user!=null){
         this.userId=user.uid;
         this.things = this.getMyThings();
-        this.things.subscribe((data)=>{
-          console.log(data);
-        })
       } else {
         this.userId==null;
         if(this.things)
