@@ -22,6 +22,11 @@ export class UserService {
       if(user!=null){
         this.userId=user.uid;
         this.things = this.getMyThings();
+        this.things.subscribe( (data)=>{
+          return data.map( (arr)=>{
+            return arr.reverse();
+          })
+        });
       } else {
         this.userId==null;
         if(this.things)
@@ -64,7 +69,10 @@ export class UserService {
   }
 
   getMyThings():FirebaseListObservable<any> {    
-    return this.db.list(this.thingsPath);
+    return this.db.list(this.thingsPath, { 
+      query:{
+        orderByChild : "timestamp"
+      }}).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }
 
 }
