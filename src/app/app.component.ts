@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThingsService } from './things-services/things.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  constructor( public things:ThingsService ){
+
+  }
 }

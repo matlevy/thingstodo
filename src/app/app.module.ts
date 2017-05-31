@@ -10,6 +10,7 @@ import { ThingsServicesModule } from './things-services/things-services.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ThingsService } from './things-services/things.service';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MdCardModule, MdButtonModule, MdIconModule, MdSidenavModule, MdInputModule,
     ThingsServicesModule, BrowserAnimationsModule
   ],
-  providers: [ThingsServicesModule],
+  providers: [ThingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(){
-    
+  constructor( public things:ThingsService ){
+
   }
  }

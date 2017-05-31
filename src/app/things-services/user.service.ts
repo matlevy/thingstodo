@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
@@ -9,6 +9,7 @@ export class UserService {
 
   authState: Observable<firebase.User>;
   userId: string;
+  things: FirebaseListObservable<any>;
 
   constructor(private db: AngularFireDatabase, public afAuth:AngularFireAuth) { 
     this.authState = afAuth.authState;
@@ -19,8 +20,14 @@ export class UserService {
     this.authState.subscribe((user:firebase.User)=>{
       if(user!=null){
         this.userId=user.uid;
+        this.things = this.getMyThings();
+        this.things.subscribe((data)=>{
+          console.log(data);
+        })
       } else {
         this.userId==null;
+        if(this.things)
+          this.things.remove();
       }
     });
   }
@@ -45,7 +52,7 @@ export class UserService {
     return ['/things/',this.userId,'/things'].join();
   }
 
-  get myThings() {    
+  getMyThings():FirebaseListObservable<any> {    
     return this.db.list(this.thingsPath);
   }
 
