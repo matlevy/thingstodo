@@ -8,6 +8,9 @@ import { MaterialSharedModule } from './../common/material-shared.module';
     CommonModule, 
     MaterialSharedModule
   ],
+  exports: [
+    ThingItemComponent
+  ],
   declarations: [ThingItemComponent]
 })
 export class ThingsViewsModule { }

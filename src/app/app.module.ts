@@ -10,20 +10,20 @@ import { ThingsServicesModule } from './things-services/things-services.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { ThingsViewsModule } from './things-views/things-views.module';
-import { ThingItemComponent } from './things-views/thing-item/thing-item.component';
+import { ThingsViewsModule } from './things-views/things-views.module';
+//import { ThingItemComponent } from './things-views/thing-item/thing-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent, ThingItemComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     MaterialSharedModule,
-    ThingsServicesModule, BrowserAnimationsModule 
+    ThingsServicesModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
