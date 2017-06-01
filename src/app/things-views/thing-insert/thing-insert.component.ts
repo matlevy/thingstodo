@@ -21,6 +21,10 @@ export class ThingInsertComponent implements OnInit {
       this.thing = this.things.user.createNewThing();
   }
 
+  cancel() {
+    this.dialogue.closeAll();
+  }
+
   save():void {
     if(this.things.user.authenticated){
       if(this.thing.source){

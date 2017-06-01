@@ -32,6 +32,10 @@ app-login {
   width: 100%;
 }
 
+md-dialog-container, .mat-dialog-container {
+  background: none !important;
+}
+
 .addnew-fab {
     position: fixed;
     bottom: 90px;
