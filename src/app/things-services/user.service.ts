@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { ThingVO } from "./thing.vo";
+import { IThingVO, ThingVO } from "./thing.vo";
 
 @Injectable()
 export class UserService {
@@ -58,6 +58,10 @@ export class UserService {
 
   saveNew( thing:ThingVO ) {
     this.things.push( thing );
+  }
+
+  saveExisting( thing:any ) {
+    this.things.update( thing.source.$key, thing );
   }
 
   get authenticated(){

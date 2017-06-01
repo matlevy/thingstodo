@@ -5,10 +5,15 @@
   margin-bottom: 50px;
 }
 
-.card-action {
+.card-action-container {
   position: absolute;
   right: 10px;
   bottom: -20px;
+  text-align: right;
+}
+
+.card-action {
+  margin-left: 4px;
 }
 
 .full-width {

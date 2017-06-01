@@ -5,6 +5,9 @@
         <p>{{ thing.body }}</p>
     </md-card-content>
     <md-card-actions>
-        <button class="card-action" md-mini-fab (click)="deleteThing()"><md-icon>clear</md-icon></button>
+        <div class="card-action-container">
+            <button class="card-action" md-mini-fab (click)="editThing()"><md-icon>description</md-icon></button>
+            <button class="card-action" md-mini-fab (click)="deleteThing()"><md-icon>clear</md-icon></button>
+        </div>
     </md-card-actions>
 </md-card>

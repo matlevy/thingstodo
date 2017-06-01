@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ThingVO } from '../../things-services/thing.vo';
+import { Component, OnInit, Input } from '@angular/core';
+import { IThingVO, ThingVO } from '../../things-services/thing.vo';
 import { ThingsService } from "../../things-services/things.service";
 import { MdDialog, MdDialogRef } from '@angular/material';
 
@@ -10,21 +10,27 @@ import { MdDialog, MdDialogRef } from '@angular/material';
 })
 export class ThingInsertComponent implements OnInit {
 
-  thing:ThingVO;
+  @Input() thing:ThingVO;
 
   constructor( public dialogueRef:MdDialogRef<any>, public things:ThingsService, public dialogue:MdDialog ) { 
     
   }
 
   ngOnInit() {
-    this.thing = this.things.user.createNewThing();
+    if( this.thing==null )
+      this.thing = this.things.user.createNewThing();
   }
 
   save():void {
     if(this.things.user.authenticated){
-      this.things.user.saveNew( this.thing );
-      this.thing.reset();
-      this.dialogue.closeAll();
+      if(this.thing.source){
+        this.things.user.saveExisting( this.thing );
+        this.dialogue.closeAll();
+      } else {
+        this.things.user.saveNew( this.thing );
+        this.thing.reset();
+        this.dialogue.closeAll();
+      }
     }    
   }
 
