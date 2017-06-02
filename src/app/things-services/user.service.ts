@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { IThingVO, ThingVO } from "./thing.vo";
+import * as core from './history.service';
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,7 @@ export class UserService {
   userId: string;
   things: FirebaseListObservable<any>;
 
-  constructor(private db: AngularFireDatabase, public afAuth:AngularFireAuth) { 
+  constructor(private db: AngularFireDatabase, public afAuth:AngularFireAuth, public history:core.history.HistoryService) { 
     this.authState = afAuth.authState;
     this.subscribeToLoginAuthstate();
   }
@@ -47,17 +48,19 @@ export class UserService {
     return this.db.list(this.thingsPath).push({title:title,subtitle:subtitle,body:body,type:'text'});
   }
 
-  deleteThing( thing ){
+  deleteThing( thing ):Promise<any>{
     if( this.things )
-      this.things.remove( thing );
+      return Promise.resolve( this.things.remove( thing ) );
+    return Promise.resolve({});
   }
 
   createNewThing():ThingVO {
     return new ThingVO();
   }
 
-  saveNew( thing:ThingVO ) {
-    this.things.push( thing );
+  saveNew( thing:ThingVO ):Promise<ThingVO> {    
+    //this.history.storeAction( savePromise, 'Thing Saved', this.deleteThing(thing) ).do();
+    return Promise.resolve( this.things.push( thing ) );
   }
 
   saveExisting( thing:any ) {

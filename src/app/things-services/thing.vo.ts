@@ -13,10 +13,6 @@ export interface IUpdateable {
     source:object;
 }
 
-export function ThingVOFromObject(source:object) {
-    
-}
-
 export class ThingVO implements IThingVO, IUpdateable {
     
     timestamp:object;

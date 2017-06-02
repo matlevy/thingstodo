@@ -31,9 +31,10 @@ export class ThingInsertComponent implements OnInit {
         this.things.user.saveExisting( this.thing );
         this.dialogue.closeAll();
       } else {
-        this.things.user.saveNew( this.thing );
-        this.thing.reset();
-        this.dialogue.closeAll();
+        this.things.user.saveNew( this.thing ).then( (value)=>{
+          this.thing.reset();
+          this.dialogue.closeAll();  
+        });        
       }
     }    
   }
