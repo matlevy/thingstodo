@@ -3,7 +3,22 @@ import { TestBed, inject } from '@angular/core/testing';
 import * as core from './history.service';
 
 describe('HistoryService', () => {
+  let testVal:number;
+  let oldVal:number;
+  
+  const doAction:core.history.Runnable = new core.history.Runnable(()=>{
+    oldVal=testVal;
+    testVal=testVal+1;
+    return testVal;
+  });
+
+  const undoAction:core.history.Runnable = new core.history.Runnable(()=>{
+    testVal=oldVal;
+    return testVal;
+  });
+
   beforeEach(() => {
+    testVal=0;
     TestBed.configureTestingModule({
       providers: [core.history.HistoryService]
     });
@@ -11,6 +26,28 @@ describe('HistoryService', () => {
 
   it('should be created', inject([core.history.HistoryService], (service: core.history.HistoryService) => {
     expect(service).toBeTruthy();
+  }));
+
+  it('should increment the counter correctly', inject([core.history.HistoryService], (service: core.history.HistoryService) => {
+    service.storeAction(doAction,'first',undoAction);
+    service.storeAction(doAction,'first',undoAction);
+    service.storeAction(doAction,'first',undoAction);
+    service.storeAction(doAction,'first',undoAction);
+    expect(service.length).toBe(4);
+    service.undoPreviousAction();
+    service.undoPreviousAction();
+    service.undoPreviousAction();
+    service.undoPreviousAction();
+    expect(service.length).toBe(0);
+  }));
+
+  it('should perform the do action, increment the counter and undo the done action', inject([core.history.HistoryService], (service: core.history.HistoryService) => {
+    service.storeAction(doAction,'first',undoAction).do();
+    expect(testVal).toBe(1);
+    expect(service.length).toBe(1);
+    service.undoPreviousAction();
+    expect(testVal).toBe(0);
+    expect(service.length).toBe(0);
   }));
 });
 
