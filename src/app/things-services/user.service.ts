@@ -39,10 +39,20 @@ export class UserService {
     return this.afAuth.auth.signOut();
   }
 
-  deleteThing( thing ):Promise<any>{
-    if( this.things )
-      return Promise.resolve( this.things.remove( thing ) );
-    return Promise.resolve({});
+  deleteThing( thing, undoable=false ):Promise<any>{
+    if( undoable ){
+      let deleteAction:core.history.Runnable = new core.history.Runnable(()=>{
+        return this.deleteThing( thing );
+      });
+      let undeleteAction:core.history.Runnable = new core.history.Runnable(()=>{
+        return this.things.push(thing);
+      });
+      return this.history.storeAction(deleteAction, 'Thing Saved', undeleteAction).do<Promise<ThingVO>>();
+    } else {
+      if( this.things )
+        return Promise.resolve( this.things.remove( thing ) );
+      return Promise.reject('Item cannot be removed from list as there is not list available');
+    }        
   }
 
   createNewThing():ThingVO {

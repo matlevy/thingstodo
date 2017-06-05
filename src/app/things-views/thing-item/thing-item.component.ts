@@ -17,7 +17,7 @@ export class ThingItemComponent implements OnInit {
   }
 
   deleteThing() {
-    this.things.user.deleteThing(this.thing);
+    this.things.user.deleteThing(this.thing, true);
   }
 
   editThing() {
