@@ -42,3 +42,10 @@ md-dialog-container, .mat-dialog-container {
     left: 20px;
     z-index: 99999;
 }
+
+.undo-fab {
+    position: fixed;
+    bottom: 160px;
+    left: 20px;
+    z-index: 99999;
+}

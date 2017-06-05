@@ -22,12 +22,7 @@ export class UserService {
     this.authState.subscribe((user:firebase.User)=>{
       if(user!=null){
         this.userId=user.uid;
-        this.things = this.getMyThings();
-        this.things.subscribe( (data)=>{
-          return data.map( (arr)=>{
-            return arr.reverse();
-          })
-        });
+        this.things = this.getMyThings();        
       } else {
         this.userId==null;
         if(this.things)
@@ -44,10 +39,6 @@ export class UserService {
     return this.afAuth.auth.signOut();
   }
 
-  saveThing( title:string, subtitle:string, body:string ) {
-    return this.db.list(this.thingsPath).push({title:title,subtitle:subtitle,body:body,type:'text'});
-  }
-
   deleteThing( thing ):Promise<any>{
     if( this.things )
       return Promise.resolve( this.things.remove( thing ) );
@@ -58,9 +49,20 @@ export class UserService {
     return new ThingVO();
   }
 
-  saveNew( thing:ThingVO ):Promise<ThingVO> {    
-    //this.history.storeAction( savePromise, 'Thing Saved', this.deleteThing(thing) ).do();
-    return Promise.resolve( this.things.push( thing ) );
+  saveNew( thing:ThingVO ):Promise<ThingVO> {   
+    let saveAction:core.history.Runnable = new core.history.Runnable(()=>{
+      return this.things.push(thing).then( data=>{
+        thing.setSource(data);
+        return Promise.resolve(thing);
+      });
+    });
+    let unsaveAction:core.history.Runnable = new core.history.Runnable(()=>{
+      return this.deleteThing( thing.source ).then( data=>{
+        thing.setSource(null);
+        return Promise.resolve(thing);
+      })
+    })
+    return this.history.storeAction(saveAction, 'Thing Saved', unsaveAction).do<Promise<ThingVO>>();
   }
 
   saveExisting( thing:any ) {
@@ -76,10 +78,7 @@ export class UserService {
   }
 
   getMyThings():FirebaseListObservable<any> {    
-    return this.db.list(this.thingsPath, { 
-      query:{
-        orderByChild : "timestamp"
-      }}).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
+    return this.db.list(this.thingsPath);
   }
 
 }

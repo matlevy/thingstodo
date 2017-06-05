@@ -2,67 +2,78 @@ import { Injectable } from '@angular/core';
 
 export namespace history {
 
+  interface IRunable {
+    run:any;
+  }
+
   interface IDoable {
     name:string;
-    setDo(action:Promise<any>):IDoable;
-    do():IUndoable;
+    setDo(action:IRunable):IDoable;
+    do<T>():T;
   }
 
   interface IUndoable extends IDoable {
-    setUndo(action:Promise<any>):void;
-    undo():IDoable;
+    setUndo(action:IRunable):IUndoable;
+    undo<T>():T;
   }
 
   interface IRedoable extends IUndoable {
     redo():IUndoable;
   }
 
-  export class BaseHistoricalAction implements IRedoable {
+  export class Runnable implements IRunable {
+    constructor(public run:Function){}
+  }
 
-    private _doAction:Promise<any>;
-    private _undoAction:Promise<any>;
+  export class BaseHistoricalAction implements IUndoable {
+
+    private _doAction:IRunable;
+    private _undoAction:IRunable;
 
     constructor( public name:string ){ }
     
-    public setDo(action:Promise<any>):IDoable {
+    public setDo(action:IRunable):IDoable {
       this._doAction = action;
       return this;
     };
     
-    public do():IUndoable {
-      return this;
+    do<T>():T {
+      return this._doAction.run();
     };
 
-    public setUndo(action:Promise<any>):IUndoable {
-      this._undoAction=action;
+    public setUndo(action:IRunable):IUndoable {
+      this._undoAction = action;
       return this;
     };
     
-    public undo():IDoable {
-      return this;
+    undo<T>():T {
+      return this._undoAction.run();
     };
 
-    public redo():IUndoable {
-      return this.do();
-    }
   }
 
   @Injectable()
   export class HistoryService {
 
-    _actions:Array<IUndoable>;
+    _actions:Array<IUndoable>=[];
 
     constructor() { }
 
-    public storeAction(task:Promise<any>,name:string='',undo:Promise<any>=null):IDoable {
+    public storeAction(run:IRunable,name:string='',undo:IRunable=null):BaseHistoricalAction {
       let action:IUndoable = new BaseHistoricalAction(name);
-      action.setDo(task);
+      action.setDo(run);
       action.setUndo(undo);
-      return action as IDoable;
+      this._actions.push(action);
+      return action as BaseHistoricalAction;
     }
 
-    public undoLastAction():IDoable {
+    public undoPreviousAction(){
       return this._actions.pop().undo();
     }
+
+    public get length():number {
+      return this._actions.length;
+    }
+
   }
 }

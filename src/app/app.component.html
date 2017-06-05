@@ -1,3 +1,4 @@
 <app-login></app-login>
 <button class="addnew-fab" *ngIf="(things.user.authState | async)" (click)="addNew()" md-fab><md-icon>add</md-icon></button>
+<button [disabled]="things.user.history.length==0" class="undo-fab" *ngIf="(things.user.authState | async)" (click)="undoLast()" md-fab><md-icon>undo</md-icon></button>
 <app-thing-item [thing]="item" *ngFor="let item of things.user.things | async"></app-thing-item>

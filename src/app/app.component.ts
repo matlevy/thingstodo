@@ -19,4 +19,8 @@ export class AppComponent {
 
     });
   }
+
+  undoLast() {
+    this.things.user.history.undoPreviousAction();
+  }
 }
