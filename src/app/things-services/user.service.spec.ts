@@ -19,7 +19,6 @@ const angularFireAuthMock = {
   authState: Observable.of({uid:1234}),
   auth: {
     signInWithPopup: ()=>{
-      alert('sdfsdf');
       return new Promise((resolve,reject)=>{
         return resolve(true);
       })
