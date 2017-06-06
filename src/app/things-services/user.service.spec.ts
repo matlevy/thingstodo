@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject, async } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ThingsServicesModule } from './things-services.module';
@@ -19,6 +19,7 @@ const angularFireAuthMock = {
   authState: Observable.of({uid:1234}),
   auth: {
     signInWithPopup: ()=>{
+      alert('sdfsdf');
       return new Promise((resolve,reject)=>{
         return resolve(true);
       })
@@ -52,10 +53,9 @@ describe('UserService',() => {
     expect(service).toBeTruthy();
   }));
 
-  it('should attempt to authenticate',inject([UserService],(service: UserService) => {
+  it('should attempt to authenticate using a popup',async( inject([UserService],(service: UserService) => {
     service.authenticate().then( returned=>{
-      console.log(returned);
+      expect(returned).toBeTruthy();
     });
-    expect(true).toBeTruthy();
-  }));
+  })));
 });
